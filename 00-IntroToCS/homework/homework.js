@@ -2,12 +2,7 @@
 
 function BinarioADecimal(num) {
   // tu codigo aca
-  let numArray = [];
-  for (let i = 0; i < num.length; i++) {
-    numArray.push(num[i]) 
-  }
-
-  let dat_reverse = numArray.reverse();
+  let dat_reverse = num.split("").reverse();
   let acum = 0;
   
   for (let i = 0; i < dat_reverse.length; i++) {
@@ -18,24 +13,18 @@ function BinarioADecimal(num) {
   return acum
 }
 
-DecimalABinario("4")
 function DecimalABinario(num) {
   // tu codigo aca
   let numInt = Number(num);
-
   let numArray = [];
-  let flag = true;
   
-  do{
+  while(numInt>0){
       let round = Math.trunc(numInt/2);
       let residue = numInt % 2
       numArray.push(residue);
       numInt = round;
-      if(numInt<=0){
-        flag = false;
-      }
-  }while(flag); 
-    return (numArray.reverse().join(''));
+  }
+  return (numArray.reverse().join(''));
 
 }
 
