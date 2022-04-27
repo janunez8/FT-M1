@@ -123,6 +123,7 @@ Y el de este código? :
 var snack = 'Meow Mix';
 
 function getFood(food) {
+   console.log(snack);
     if (food) {
         var snack = 'Friskies';
         return snack;
@@ -164,8 +165,8 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 function printing() {
     console.log(1);//1ero
     setTimeout(function() { console.log(2); }, 1000); //4to
-    setTimeout(function() { console.log(3); }, 0); //2do
-    console.log(4);//3ero
+    setTimeout(function() { console.log(3); }, 0); //3ero
+    console.log(4);//2do
     /*
     1
     4
