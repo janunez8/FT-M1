@@ -14,10 +14,16 @@ function counter() {
   }
   return newCounter;
 }
+
+
+//Test
 const cb = function(x) {
   return x * 2;
 };
-cacheFunction(cb);
+var cache = cacheFunction(cb);
+console.log(cache(2));
+
+
 function cacheFunction(cb) {
   // Usa closures para crear un caché para la función cb.
   // la función que retornas debe aceptar un solo argumento e invocar a cb con ese argumento
@@ -31,11 +37,15 @@ function cacheFunction(cb) {
   // si la invocas de nuevo con 5, deberia retornar 25 (guardado previament en el cache)
   // Tips, usá un objeto donde cada propiedad sea un argumento, y el valor el resultado.
   // usá hasOwnProperty!
-  console.log(cb(5));
-  var x = 2;
   //(x) => { return x * x; }
-  
-  
+
+  let cache = {};
+  return (function(x){
+    if(!cache.hasOwnProperty(x)){
+      cache[x] = cb(x); //key : value
+    }
+    return cache[x];
+  })
 }
 
 // Bind
@@ -76,11 +86,11 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena){
 // Modificar los undefined por el código correspondiente en cada caso
 // Pista, tenes que usar bind para "bindear" algunos parámetros de la función crearCadena.
 
-let textoAsteriscos = crearCadena.bind(crearCadena, "*", "*");
+let textoAsteriscos = crearCadena.bind(null, "*", "*");
 
-let textoGuiones = crearCadena.bind(crearCadena, "-", "-");
+let textoGuiones = crearCadena.bind(null, "-", "-");
 
-let textoUnderscore = crearCadena.bind(crearCadena, "_", "_");
+let textoUnderscore = crearCadena.bind(null, "_", "_");
 
 
 
