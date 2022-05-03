@@ -91,6 +91,7 @@ let textoAsteriscos = crearCadena.bind(null, "*", "*");
 let textoGuiones = crearCadena.bind(null, "-", "-");
 
 let textoUnderscore = crearCadena.bind(null, "_", "_");
+console.log(textoAsteriscos("hola"))
 
 
 

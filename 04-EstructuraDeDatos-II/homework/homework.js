@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 // Implementa la clase LinkedList
 // tiene metodos `add`, `remove`, y `search`
 // add: Agrega un nuevo nodo en el final de la lista
@@ -11,29 +11,88 @@
 // search: Busca un valor dentro de la lista. Puede recibir un valor o una función. Si no hubiera resultados, devuelve null.
 
 function LinkedList() {
-
+  this._length = 0;
+  this.head = null;
 }
 
-function Node(value){
-
+function Node(value) {
+  this.value = value;
+  this.next = null;
 }
+
+LinkedList.prototype.add = function (data) {
+  //data tiene el valor y el puntero
+  let node = new Node(data);
+  let current = this.head;
+  //SI la cabecera esta vacia, la inicializo
+  if (!current) {
+    this.head = node;
+    this._length++;
+    return node;
+  }
+  //Recorre hasta el ultimo next
+  while (current.next) {
+    current = current.next;
+  }
+  current.next = node;
+  this._length++;
+  return node;
+};
+let linkedList = new LinkedList();
+
+console.log(linkedList.add("JeFF"));
+
+console.log(linkedList.add("Andres"));
+
+console.log(linkedList);
+
+LinkedList.prototype.remove = function () {
+  let current = this.head;
+  let prev = null;
+
+  let index = this._length;
+  if (!current) throw new Error("No hay elementos en la lista");
+
+  console.log(current.next);
+
+  if (index < 0 || index > this._length) {
+    return null;
+  }
+
+  if (index === 0) {
+    this.head = current.next;
+  } else {
+    // for (let i = 0; i < index; i++) {
+    //   prev = current;
+    //   current = current.next;
+    // }
+    while (current) {
+      prev = current;
+      current = current.next;
+    }
+    prev.next = current.next;
+  }
+
+  this._length--;
+  return current.next;
+};
+
+console.log(linkedList.remove());
+console.log(linkedList);
 
 // Hash Table( ver información en: https://es.wikipedia.org/wiki/Tabla_hash)
 // Una Hash table contiene un arreglo de "contenedores" o buckets donde puede guardar información.
 // Para este ejercicio, generar 35 buckets para la Hash Table, y realizar los métodos, get, hasKey
 // Para almacenar un valor asociado a una key (string):
-//    - Se pasa ese valor a la función hash(Pista: usar la función charCodeAt), que determina la posición en que debe ir en el arreglo. 
-//    - Luego el elemento se inserta(llamando al método set) en la posición(índice) devuelta. 
+//    - Se pasa ese valor a la función hash(Pista: usar la función charCodeAt), que determina la posición en que debe ir en el arreglo.
+//    - Luego el elemento se inserta(llamando al método set) en la posición(índice) devuelta.
 // Para buscar el valor por su key:
-//    - Sólo habrá que pasarle a la función hash la clave del elemento a buscar y ésta determinará la posición 
+//    - Sólo habrá que pasarle a la función hash la clave del elemento a buscar y ésta determinará la posición
 //      en que se encuentra.
 //    - Usar el número obtenido, para buscar(llamando al método get) el contenedor o bucket donde está el valor.
 //    - Retornar dicho valor.
 
-function HashTable() {
-
-}
-
+function HashTable() {}
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
@@ -41,5 +100,5 @@ function HashTable() {
 module.exports = {
   Node,
   LinkedList,
-  HashTable
+  HashTable,
 };
